@@ -1,8 +1,8 @@
-defmodule ExAws.SecretsManagerTest do
+defmodule ExAws.SecretsTest do
   use ExUnit.Case, async: true
 
   alias ExAws.Operation.JSON
-  alias ExAws.SecretsManager
+  alias ExAws.Secrets
 
   test "Cancel Rotating Secret" do
     assert %JSON{
@@ -17,7 +17,7 @@ defmodule ExAws.SecretsManagerTest do
              path: "/",
              service: :secretsmanager,
              stream_builder: nil
-           } = SecretsManager.cancel_rotate_secret("secret-id")
+           } = Secrets.cancel_rotate_secret("secret-id")
   end
 
   test "Create Secret" do
@@ -33,7 +33,7 @@ defmodule ExAws.SecretsManagerTest do
              path: "/",
              service: :secretsmanager,
              stream_builder: nil
-           } = SecretsManager.create_secret()
+           } = Secrets.create_secret()
   end
 
   test "Delete Secret" do
@@ -50,7 +50,7 @@ defmodule ExAws.SecretsManagerTest do
              service: :secretsmanager,
              stream_builder: nil
            } =
-             SecretsManager.delete_secret("secret-id", [
+             Secrets.delete_secret("secret-id", [
                {:recovery_window_in_days, 5}
              ])
   end
@@ -68,7 +68,7 @@ defmodule ExAws.SecretsManagerTest do
              path: "/",
              service: :secretsmanager,
              stream_builder: nil
-           } = SecretsManager.describe_secret("secret-id")
+           } = Secrets.describe_secret("secret-id")
   end
 
   test "Get Random Password" do
@@ -84,7 +84,7 @@ defmodule ExAws.SecretsManagerTest do
              path: "/",
              service: :secretsmanager,
              stream_builder: nil
-           } = SecretsManager.get_random_password()
+           } = Secrets.get_random_password()
   end
 
   test "Get Secret Value" do
@@ -105,7 +105,7 @@ defmodule ExAws.SecretsManagerTest do
              service: :secretsmanager,
              stream_builder: nil
            } =
-             SecretsManager.get_secret_value("secret-id", [
+             Secrets.get_secret_value("secret-id", [
                {:version_id, "foo"},
                {:version_stage, "bar"}
              ])
@@ -125,7 +125,7 @@ defmodule ExAws.SecretsManagerTest do
              service: :secretsmanager,
              stream_builder: nil
            } =
-             SecretsManager.list_secrets([
+             Secrets.list_secrets([
                {:max_results, 5},
                {:next_token, "foo"}
              ])
@@ -150,7 +150,7 @@ defmodule ExAws.SecretsManagerTest do
              service: :secretsmanager,
              stream_builder: nil
            } =
-             SecretsManager.list_secret_version_ids("secret-id", [
+             Secrets.list_secret_version_ids("secret-id", [
                {:include_deprecated, true},
                {:max_results, 5},
                {:next_token, "foo"}
@@ -177,7 +177,7 @@ defmodule ExAws.SecretsManagerTest do
              service: :secretsmanager,
              stream_builder: nil
            } =
-             SecretsManager.put_secret_value("secret-id", [
+             Secrets.put_secret_value("secret-id", [
                {:client_request_token, "token"},
                {:secret_binary, "binary"},
                {:secret_string, "string"},
@@ -201,7 +201,7 @@ defmodule ExAws.SecretsManagerTest do
              path: "/",
              service: :secretsmanager,
              stream_builder: nil
-           } = SecretsManager.restore_secret("secret-id")
+           } = Secrets.restore_secret("secret-id")
   end
 
   test "Rotate Secret" do
@@ -223,7 +223,7 @@ defmodule ExAws.SecretsManagerTest do
              service: :secretsmanager,
              stream_builder: nil
            } =
-             SecretsManager.rotate_secret("secret-id", [
+             Secrets.rotate_secret("secret-id", [
                {:client_request_token, "token"},
                {:rotation_lambda_arn, "rotation lambda"},
                {:rotation_rules, [{:automatically_after_days, 3}]}
@@ -250,7 +250,7 @@ defmodule ExAws.SecretsManagerTest do
              service: :secretsmanager,
              stream_builder: nil
            } =
-             SecretsManager.tag_resource("secret-id", [
+             Secrets.tag_resource("secret-id", [
                [{:key, "key1"}, {:value, "value1"}],
                [{:key, "key2"}, {:value, "value2"}]
              ])
@@ -269,7 +269,7 @@ defmodule ExAws.SecretsManagerTest do
              path: "/",
              service: :secretsmanager,
              stream_builder: nil
-           } = SecretsManager.untag_resource("secret-id", ["key1", "key2"])
+           } = Secrets.untag_resource("secret-id", ["key1", "key2"])
   end
 
   test "Update Secret" do
@@ -293,7 +293,7 @@ defmodule ExAws.SecretsManagerTest do
              service: :secretsmanager,
              stream_builder: nil
            } =
-             SecretsManager.update_secret("secret-id", [
+             Secrets.update_secret("secret-id", [
                {:client_request_token, "token"},
                {:description, "description"},
                {:kms_key_id, "kms key"},
@@ -321,7 +321,7 @@ defmodule ExAws.SecretsManagerTest do
              service: :secretsmanager,
              stream_builder: nil
            } =
-             SecretsManager.update_secret_version_stage("secret-id", [
+             Secrets.update_secret_version_stage("secret-id", [
                {:move_to_version_id, "version"},
                {:remove_from_version_id, "remove"},
                {:version_stage, "stage"}

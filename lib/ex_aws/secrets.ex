@@ -1,4 +1,4 @@
-defmodule ExAws.SecretsManager do
+defmodule ExAws.Secrets do
   @moduledoc """
   Operations on AWS Secrets Manager
   """

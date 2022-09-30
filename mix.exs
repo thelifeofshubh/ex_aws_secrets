@@ -1,12 +1,13 @@
-defmodule ExAws.SecretsManager.Mixfile do
+defmodule ExAws.Secrets.Mixfile do
   use Mix.Project
 
   def project do
     [
-      app: :ex_aws_secretsmanager,
-      version: "2.0.0",
+      app: :ex_aws_secrets,
+      version: "1.0.0",
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
+      elixirc_options: [warnings_as_errors: true],
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -29,14 +30,7 @@ defmodule ExAws.SecretsManager.Mixfile do
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
       {:hackney, ">= 0.0.0", only: [:dev, :test]},
       {:poison, ">= 0.0.0", only: [:dev, :test]},
-      ex_aws()
+      {:ex_aws, "~> 2.0.0"}
     ]
-  end
-
-  defp ex_aws() do
-    case System.get_env("AWS") do
-      "LOCAL" -> {:ex_aws, path: "../ex_aws"}
-      _ -> {:ex_aws, "~> 2.0.0"}
-    end
   end
 end
