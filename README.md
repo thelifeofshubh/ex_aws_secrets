@@ -1,25 +1,24 @@
-# ExAws.SecretsManager
+# ExAws.Secrets
 
-Service module for https://github.com/ex-aws/ex_aws
+Service module for https://github.com/ex-aws/ex_aws. Library encapsulating the operations to be performed against AWS Secrets Manager.
+
+Due to the lack of maintenance of the [original repository](https://github.com/ex-aws/ex_aws_secretsmanager), it has been decided to make a fork and create this repository as an alternative for an updated version.
 
 ## Installation
 
-The package can be installed by adding `ex_aws_secretsmanager` to your list of 
-dependencies in `mix.exs` along with `:ex_aws` and your preferred JSON 
-codec / http client
+The package can be installed by adding `ex_aws_secrets` to your list of dependencies in `mix.exs` along with `:ex_aws` and your preferred JSON codec / http client.
 
 ```elixir
 def deps do
   [
     {:ex_aws, "~> 2.0"},
-    {:ex_aws_secretsmanager, "~> 2.0"},
+    {:ex_aws_secrets, "~> 1.0"},
     {:poison, "~> 3.0"},
     {:hackney, "~> 1.9"},
   ]
 end
 ```
 
-Documentation can be found at [https://hexdocs.pm/ex_aws_secretsmanager](https://hexdocs.pm/ex_aws_secretsmanager).
 
 ## License
 
